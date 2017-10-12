@@ -12,7 +12,7 @@ prior_read = current_time - timedelta(hours = 1)
 
 if current_time.hour != prior_read.hour:
 	city, observation_time, temperature_string, feelslike_string, relative_humidity = current()
-	today_conditions, today_icon, today_high, today_low, today_avehumidity, tomorrow_conditions, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity = forecast()
+	today_day, today_conditions, today_icon, today_high, today_low, today_avehumidity, tomorrow_day, tomorrow_conditions, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity = forecast()
 	prior_read = current_time
 
 	#one variable to moderate color/intensity will be the temperature delta between the two days
@@ -24,7 +24,8 @@ if current_time.hour != prior_read.hour:
 			break
 		else:
 			tomorrow_color = 'null'
-	draw(tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
+			
+	draw(tomorrow_day, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
 	print('Tomorrows condition will be {}, a color of {}. The high delta will be {}.'.format(tomorrow_icon, tomorrow_color, high_temp_delta))
 
 

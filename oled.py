@@ -24,10 +24,10 @@ image = Image.new('1', (width, height))
 draw = ImageDraw.Draw(image)
 
 x = 0
-def draw(conditions, high, low, avehumidity):
+def draw(day, conditions, high, low, avehumidity):
 	draw = ImageDraw.Draw(image)
 	draw.rectangle((0,0,width,height), outline=0, fill=0)
-	draw.text((x, top), "Monday:", font=font, fill=255)
+	draw.text((x, top), str(day), font=font, fill=255)
 	draw.text((x, top+8), str(conditions) , font=font, fill=255)
 	draw.text((x, top+16), "High:" + str(high) + " Low:" + str(low), font=font, fill=255)
 	draw.text((x, top+25), "Humdity:" + str(avehumidity), font=font, fill=255)

@@ -39,6 +39,7 @@ def forecast():
 	tomorrow_period_index = periods.index(2)
 
 	# grab todays high high/low temp and avg. humidity
+	today_day = forecast_parsed['forecast']['simpleforecast']['forecastday'][today_period_index]['date']['weekday']
 	today_conditions = forecast_parsed['forecast']['simpleforecast']['forecastday'][today_period_index]['conditions']
 	today_icon = forecast_parsed['forecast']['simpleforecast']['forecastday'][today_period_index]['icon']
 	today_high = forecast_parsed['forecast']['simpleforecast']['forecastday'][today_period_index]['high']['fahrenheit']
@@ -46,10 +47,13 @@ def forecast():
 	today_avehumidity = forecast_parsed['forecast']['simpleforecast']['forecastday'][today_period_index]['avehumidity']
 
 	# grab tomorrows high high/low temp and avg. humidity
+	tomorrow_day = forecast_parsed['forecast']['simpleforecast']['forecastday'][tomorrow_period_index]['date']['weekday']
 	tomorrow_conditions = forecast_parsed['forecast']['simpleforecast']['forecastday'][tomorrow_period_index]['conditions']
 	tomorrow_icon = forecast_parsed['forecast']['simpleforecast']['forecastday'][tomorrow_period_index]['icon']
 	tomorrow_high = forecast_parsed['forecast']['simpleforecast']['forecastday'][tomorrow_period_index]['high']['fahrenheit']
 	tomorrow_low = forecast_parsed['forecast']['simpleforecast']['forecastday'][tomorrow_period_index]['low']['fahrenheit']
 	tomorrow_avehumidity = forecast_parsed['forecast']['simpleforecast']['forecastday'][tomorrow_period_index]['avehumidity']
 
-	return(today_conditions, today_icon, today_high, today_low, today_avehumidity, tomorrow_conditions, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
+	return(today_day, today_conditions, today_icon, today_high, today_low, today_avehumidity, tomorrow_day, tomorrow_conditions, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
+
+
