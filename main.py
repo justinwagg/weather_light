@@ -1,14 +1,16 @@
 from datetime import datetime, timedelta
 from get_weather import current, forecast
 from storage import color_dictionary
-# from oled import draw
-
-#https://www.amazon.com/Light-Accents-Table-Natural-Wooden/dp/B01MYWYM0X/ref=sr_1_2?s=hi&ie=UTF8&qid=1507602398&sr=1-2&keywords=frosted+glass+sphere
+from oled import draw
+from lighting import *
+from multiprocessing import Process
 
 #set update time to be on the hour every hour
 current_time = datetime.now()
 prior_read = current_time - timedelta(hours = 1)
 
+p1 = Process(target=welcome)
+p1.start()
 
 if current_time.hour != prior_read.hour:
 	city, observation_time, temperature_string, feelslike_string, relative_humidity = current()
@@ -24,9 +26,10 @@ if current_time.hour != prior_read.hour:
 			break
 		else:
 			tomorrow_color = 'null'
-			
-	# draw(tomorrow_day, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
-	print('Tomorrows condition will be {}, a color of {}. The high delta will be {}.'.format(tomorrow_icon, tomorrow_color, high_temp_delta))
+	
+	up(tomorrow_color[0], tomorrow_color[1], tomorrow_color[2])
+	draw(tomorrow_day, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
+	print('Tomorrows condition will be {}, a color of {}. The high delta will be {}.'.format(tomorrow_icon, tomorrow_color[1], high_temp_delta))
 
 
 

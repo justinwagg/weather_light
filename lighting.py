@@ -29,12 +29,6 @@ def translate(value, leftMin, leftMax, rightMin, rightMax):
     # Convert the 0-1 range into a value in the right range.
     return int(round(rightMin + (valueScaled * rightSpan)))		
 
-
-def rgb(r, g, b):
-	for i in range(strip.numPixels()):
-		strip.setPixelColor(i, Color(r,g,b))
-	strip.show()
-
 def welcome(strip, wait_ms=2, iterations=5):
 	for j in range(256*iterations):
 		strip.setBrightness(255-translate(j, 0, 256*iterations, 0, 255))
@@ -43,13 +37,11 @@ def welcome(strip, wait_ms=2, iterations=5):
 		strip.show()
 		time.sleep(wait_ms/1000.0)
 
+def rgb(r, g, b):
+	for i in range(strip.numPixels()):
+		strip.setPixelColor(i, Color(r,g,b))
+	strip.show()
 
-up(255,69,0)	
-
-
-
-up
-down()
 def down():
 	for i in reversed(range(255)):
 
