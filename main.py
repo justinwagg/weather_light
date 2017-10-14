@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from get_weather import current, forecast
 from storage import color_dictionary
-from oled import draw
+# from oled import draw
 
 #https://www.amazon.com/Light-Accents-Table-Natural-Wooden/dp/B01MYWYM0X/ref=sr_1_2?s=hi&ie=UTF8&qid=1507602398&sr=1-2&keywords=frosted+glass+sphere
 
@@ -25,7 +25,7 @@ if current_time.hour != prior_read.hour:
 		else:
 			tomorrow_color = 'null'
 			
-	draw(tomorrow_day, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
+	# draw(tomorrow_day, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
 	print('Tomorrows condition will be {}, a color of {}. The high delta will be {}.'.format(tomorrow_icon, tomorrow_color, high_temp_delta))
 
 

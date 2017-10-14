@@ -4,7 +4,7 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-
+# wget --content-disposition https://dl.dafont.com/dl/?f=pixel_operator
 # 128x32 display with hardware I2C:
 disp = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
