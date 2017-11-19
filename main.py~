@@ -1,0 +1,37 @@
+from datetime import datetime, timedelta
+from lighting import *
+from get_weather import current, forecast
+from storage import color_dictionary
+from oled import draw
+from multiprocessing import Process
+
+#set update time to be on the hour every hour
+current_time = datetime.now()
+prior_read = current_time - timedelta(hours = 1)
+
+p1 = Process(target=welcome, args=[strip])
+p1.start()
+
+if current_time.hour != prior_read.hour:
+	city, observation_time, temperature_string, feelslike_string, relative_humidity = current()
+	today_day, today_conditions, today_icon, today_high, today_low, today_avehumidity, tomorrow_day, tomorrow_conditions, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity = forecast()
+	prior_read = current_time
+
+	#one variable to moderate color/intensity will be the temperature delta between the two days
+	high_temp_delta = int(tomorrow_high) - int(today_high)
+
+	for x in color_dictionary:
+		if tomorrow_icon in (color_dictionary[x]['conditions']):
+			tomorrow_color = color_dictionary[x]['color']
+			break
+		else:
+			tomorrow_color = 'null'
+
+#	welcome(strip)
+	if not p1.is_alive():
+		up(tomorrow_color[0], tomorrow_color[1], tomorrow_color[2])
+		draw(tomorrow_day, tomorrow_icon, tomorrow_high, tomorrow_low, tomorrow_avehumidity)
+		print('Tomorrows condition will be {}, a color of {}. The high delta will be {}.'.format(tomorrow_icon, tomorrow_color[1], high_temp_delta))
+
+
+
